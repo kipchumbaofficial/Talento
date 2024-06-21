@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Talento &mdash; Sign-up</title>
+    <link rel="shortcut icon" href="images/logo.jpg" type="image/x-icon">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="bg-black text-white">
+    <div class="container mx-auto px-14">
+        <!--Nav section starts-->
+    <section>
+        <header>
+            <div class="flex justify-between items-center p-4">
+                <h1 class="text-2xl font-bold"><span class="text-orange-700">T</span>alento</h1>
+                <a href="login.html">
+                    <button class="bg-transparent font-bold py-2 px-4 border border-white rounded hover:bg-white hover:text-black focus:outline-none focus:shadow-outline">
+                        Login
+                    </button>
+                </a>
+            </div>
+        </header>
+    </section>
+    <!--Nav section ends-->
+    <div class="border-t border-white my-4 p-4"></div>
+    
+    <div class="flex items-center justify-center h-screen">
+        <div class="border border-white p-8 rounded-lg shadow-lg w-full max-w-sm">
+            <h2 class="text-2xl font-bold mb-6 text-center">Sign Up</h2>
+            <form action="#">
+                <div class="mb-4">
+                    <label for="email" class="block text-sm font-medium">First Name</label>
+                    <input type="text" id="first-name" class="mt-1 block w-full px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" placeholder="John">
+                </div>
+                <div class="mb-4">
+                    <label for="email" class="block text-sm font-medium">Last Name</label>
+                    <input type="text" id="last-name" class="mt-1 block w-full px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" placeholder="Doe">
+                </div>
+                <div class="mb-4">
+                    <label for="email" class="block text-sm font-medium">Email</label>
+                    <input type="email" id="email" class="mt-1 block w-full px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" placeholder="you@example.com">
+                </div>
+                <div class="mb-6">
+                    <label for="password" class="block text-sm font-medium">Password</label>
+                    <input type="password" id="password" class="mt-1 block w-full px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" placeholder="********">
+                </div>
+                <div class="mb-6">
+                    <label for="password" class="block text-sm font-medium">Confirm Password</label>
+                    <input type="password" id="confirm-password" class="mt-1 block w-full px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" placeholder="********">
+                </div>
+                <button type="submit" class="w-full bg-indigo-600 text-white py-2 px-4 rounded-md hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Register</button>
+            </form>
+            <p class="mt-4 text-center text-sm text-gray-600">
+                Already have an account? <a href="login.html" class="font-medium text-indigo-600 hover:text-indigo-500">Sign in</a>
+            </p>
+        </div>
+    
+    </div>
+    </div>
+    
+</body>
+</html>

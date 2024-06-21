@@ -4,9 +4,202 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Talento</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="custom.css">
+    <link rel="shortcut icon" href="images/logo.jpg" type="image/x-icon">
 </head>
-<body>
-    <h1>Hello World</h1>
-    
+<body class="bg-black text-white">
+    <div class="container mx-auto px-14">
+        <!--Nav section starts-->
+        <section>
+            <header>
+                <div class="flex justify-between items-center p-4">
+                    <h1 class="text-2xl font-bold"><span class="text-orange-700">T</span>alento</h1>
+                    <a href="sign-up.html">
+                        <button class="bg-transparent font-bold py-2 px-4 border border-white rounded hover:bg-white hover:text-black focus:outline-none focus:shadow-outline">
+                            Register
+                        </button>
+                    </a>
+                </div>
+            </header>
+        </section>
+        <!--Nav section ends-->
+
+        <div class="border-t border-white my-4 p-4"></div>
+        <!--Home-->
+        <section class="flex justify-between items-start">
+            <div class="w-2/3 p-4">
+                <h2 class="text-3xl font-bold mb-4">Welcome to Talento</h2>
+                <p class="mb-4">Find the best talent for your projects. Whether you need a graphic designer, photographer, or web developer, we have the right professionals for you.</p>
+                <p class="mb-4">Join us and start hiring top talent today!</p>
+                <div>
+                    <div class="flex  items-center space-x-2">
+                        <input type="text" placeholder="Who are you looking to hire?" class="py-2 px-4 rounded border border-white text-black">
+                        <button class="bg-transparent font-bold py-2 px-4 border border-white rounded hover:bg-white hover:text-black focus:outline-none focus:shadow-outline">
+                            Search
+                        </button>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="w-1/3 p-4 bg-gray-800 rounded-lg">
+                <h3 class="text-2xl font-bold mb-4">Login</h3>
+                <form action="login_process.html" method="post">
+                    <div class="mb-4">
+                        <label class="block text-white text-sm font-bold mb-2" for="username">
+                            Username
+                        </label>
+                        <input class="shadow appearance-none border rounded w-full py-2 px-3 text-black leading-tight focus:outline-none focus:shadow-outline" id="username" type="text" placeholder="Username" name="username">
+                    </div>
+                    <div class="mb-4">
+                        <label class="block text-white text-sm font-bold mb-2" for="password">
+                            Password
+                        </label>
+                        <input class="shadow appearance-none border rounded w-full py-2 px-3 text-black mb-3 leading-tight focus:outline-none focus:shadow-outline" id="password" type="password" placeholder="********" name="password">
+                    </div>
+                    <div class="flex items-center justify-between mb-4">
+                        <button class="bg-transparent font-bold py-2 px-4 w-full border border-white rounded hover:bg-white hover:text-black focus:outline-none focus:shadow-outline" type="submit">
+                            Sign In
+                        </button>
+                    </div>
+                    <div class="flex justify-between items-center mb-4">
+                        <a class="inline-block align-baseline font-bold text-sm text-orange-700 hover:text-orange-800" href="#">
+                            Forgot Password?
+                        </a>
+                        <a class="inline-block align-baseline font-bold text-sm text-orange-700 hover:text-orange-800" href="sign-up.html">
+                            Don't have an account? Sign Up
+                        </a>
+                    </div>
+                </form>
+            </div>
+        </section>
+        <!--Home ends-->
+
+        <!--Search section starts-->
+        <section>
+
+        </section>
+        <!--Search section ends-->
+
+        <!--Featured section starts-->
+        <section class="py-10">
+            <div class="p-4 text-2xl font-bold">
+                <h2>Featured</h2>
+            </div>
+            <div class="flex flex-wrap justify-center">
+                <div class="border border-white p-5 w-1/4 m-2 rounded-lg card">
+                    <div class="flex items-center mb-4">
+                        <img class="w-24 h-24 rounded-full mr-4" src="images/profile.jpg" alt="">
+                        <div>
+                            <ul>
+                                <li class="font-bold">John Doe</li>
+                                <li>Photographer</li>
+                                <li>$20/hr</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <p>Creative graphic designer with a passion for visual storytelling, specializing in logos, branding, and digital media.</p>
+                </div>
+                <!-- Repeat this card for more profiles -->
+                <div class="border border-white p-5 w-1/4 m-2 rounded-lg card">
+                    <div class="flex items-center mb-4">
+                        <img class="w-24 h-24 rounded-full mr-4" src="images/profile.jpg" alt="">
+                        <div>
+                            <ul>
+                                <li class="font-bold">Jane Doe</li>
+                                <li>Graphic Designer</li>
+                                <li>$20/hr</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <p>Creative graphic designer with a passion for visual storytelling, specializing in logos, branding, and digital media.</p>
+                </div>
+                <div class="border border-white p-5 m-2 rounded-lg card">
+                    <div class="flex items-center mb-4">
+                        <img class="w-24 h-24 rounded-full mr-4" src="images/profile.jpg" alt="">
+                        <div>
+                            <ul>
+                                <li class="font-bold">John Smith</li>
+                                <li>Web Developer</li>
+                                <li>$30/hr</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <p>Experienced web developer skilled in front-end and back-end technologies, ready to build and optimize your website.</p>
+                </div>
+            </div>
+        </section>
+        <!--Featured section ends-->
+
+        <!--Skill pool section starts-->
+        <section>
+            <div class="p-4 text-2xl font-bold">
+                <h2>Skill pool</h2>
+            </div>
+            <div class="flex flex-wrap justify-center">
+                <div class="p-5 m-2 rounded-lg bg-cover bg-center card" style="background-image: url(images/camera.jpg);">
+                    <div class="flex items-center mb-4">
+                        <div>
+                            <h1 class="font-bold">Photographers</h1>
+                        </div>
+                    </div>
+                    <p>Creative graphic designer with a passion for visual storytelling, specializing in logos, branding, and digital media.</p>
+                </div>
+                <div class="p-5 m-2 rounded-lg bg-cover bg-center card" style="background-image: url(images/hair-dressers.jpg);">
+                    <div class="flex items-center mb-4">
+                        <div>
+                            <h1 class="font-bold">Hair Dressers</h1>
+                        </div>
+                    </div>
+                    <p>Creative graphic designer with a passion for visual storytelling, specializing in logos, branding, and digital media.</p>
+                </div>
+                <div class="p-5 m-2 rounded-lg bg-cover bg-center" style="width: 30%; background-image: url(images/interior.jpg);">
+                    <div class="flex items-center mb-4">
+                        <div>
+                            <h1 class="font-bold">Interior Designers</h1>
+                        </div>
+                    </div>
+                    <p>Creative graphic designer with a passion for visual storytelling, specializing in logos, branding, and digital media.</p>
+                </div>
+            </div>
+        </section>
+        <!--Skill pool section ends-->
+
+        <!-- Footer section starts -->
+<footer class="bg-gray-900 text-white p-8 mt-16">
+    <div class="container mx-auto flex justify-between">
+        <div class="w-1/3">
+            <h3 class="text-lg font-bold">Quick Links</h3>
+            <ul class="mt-4">
+                <li><a href="profile.html" class="hover:text-gray-400">Home</a></li>
+                <li><a href="#" class="hover:text-gray-400">About Us</a></li>
+                <li><a href="#" class="hover:text-gray-400">Services</a></li>
+                <li><a href="#" class="hover:text-gray-400">Contact Us</a></li>
+            </ul>
+        </div>
+        <div class="w-1/3">
+            <h3 class="text-lg font-bold">Connect With Us</h3>
+            <ul class="mt-4">
+                <li><a href="#" class="hover:text-gray-400">Facebook</a></li>
+                <li><a href="#" class="hover:text-gray-400">Twitter</a></li>
+                <li><a href="#" class="hover:text-gray-400">Instagram</a></li>
+                <li><a href="#" class="hover:text-gray-400">LinkedIn</a></li>
+            </ul>
+        </div>
+        <div class="w-1/3">
+            <h3 class="text-lg font-bold">Contact Info</h3>
+            <p class="mt-4">123 Moi Avenue, Nairobi, Kenya</p>
+            <p>info@example.com</p>
+            <p>+123 456 7890</p>
+        </div>
+    </div>
+    <div class="mt-8 border-t border-gray-800 pt-8 text-center">
+        <p>&copy; 2024 Talento. All rights reserved.</p>
+    </div>
+</footer>
+<!-- Footer section ends -->
+
+
+    </div>
 </body>
 </html>
