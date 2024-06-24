@@ -3,9 +3,11 @@ from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from flask_login import LoginManager
 from config import Config
+from flask_mail import Mail
 
 db = SQLAlchemy()
 login_manager = LoginManager()
+mail = Mail()
 
 from app.models.user import User
 
@@ -16,6 +18,7 @@ def create_app():
     db.init_app(app)
     login_manager.init_app(app)
     login_manager.login_view = 'login'
+    mail.init_app(app)
 
     with app.app_context():
         from . import routes  # Ensure routes are imported within the app context

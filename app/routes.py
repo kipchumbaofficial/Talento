@@ -1,11 +1,19 @@
 #!/usr/bin/python3
 from app.models.user import User
-from app import db
+from app import db, mail
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask import render_template, request, redirect, url_for, flash, current_app as app
 from flask_login import login_user, logout_user, login_required, current_user
-"""Flask app"""
+from flask_mail import Message
+from itsdangerous import URLSafeTimedSerializer
+import re
 
+s = URLSafeTimedSerializer(app.config['SECRET_KEY'])
+
+def is_valid_email(email):
+    # Basic regex for email validation
+    email_regex = r'^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$'
+    return re.match(email_regex, email)
 
 @app.route('/')
 def index():
@@ -55,6 +63,7 @@ def search():
     return render_template('search.html')
 
 @app.route('/profile')
+@login_required
 def profile():
     return render_template('profile.html')
 
@@ -67,11 +76,55 @@ def logout():
 @app.route('/forgot', methods=['POST', 'GET'])
 def forgot():
     if request.method == 'POST':
-        email = request.form['email']
-        if User.query.filter_by(email=email).first():
-            flash('Password reset link sent to email', 'success')
+        email = request.form['email'].strip()
+
+        if not is_valid_email(email):
+            flash('Invalid email address format', 'error')
+            return redirect(url_for('forgot'))
+
+        user = User.query.filter_by(email=email).first()
+
+        if user:
+            token = s.dumps(user.email, salt='password-reset-salt')
+            reset_url = url_for('reset', token=token, _external=True)
+            subject = "Password Reset"
+            sender = app.config['MAIL_USERNAME']
+            recipients = [user.email]
+            body = f"Please click the link to reset password: {reset_url}"
+
+            msg = Message(subject=subject, sender=sender, recipients=recipients)
+            msg.body = body
+            mail.send(msg)
+
+            flash('Password reset link sent to email', 'info')
         else:
-            flash('User does not exist! Try again', 'error')
+            flash('Email is not registered. Try again', 'error')
         return redirect(url_for('forgot'))
-    return render_template('forgot-password.html')
     
+    return render_template('forgot-password.html')
+
+@app.route('/reset/<token>', methods=['POST', 'GET'])
+def reset(token):
+    try:
+        email = s.loads(token, salt='password-reset-salt', max_age=3600)
+    except Exception as e:
+        flash('Password reset link is invalid or expired', 'error')
+        return redirect(url_for('forgot'))
+    
+    if request.method == 'POST':
+        new_pwd = request.form['new-pwd']
+        confirm_pwd = request.form['confirm-pwd']
+    
+        if new_pwd != confirm_pwd:
+            flash('Passwords do not match!', 'error')
+            return redirect(url_for('reset', token=token))
+        
+        user = User.query.filter_by(email=email).first()
+        hashed_password = generate_password_hash(new_pwd, method='pbkdf2:sha256')
+        user.password = hashed_password
+        db.session.commit()
+
+        flash('Password Reset Successful!', 'success')
+        return redirect(url_for('login'))
+    
+    return render_template('reset-password.html', token=token)
