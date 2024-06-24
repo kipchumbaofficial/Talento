@@ -2,3 +2,9 @@
     width: 30%;
     height: 300px;
 }
+.success {
+    color: green;
+}
+.error {
+    color: red;
+}
