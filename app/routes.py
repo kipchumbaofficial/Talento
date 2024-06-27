@@ -1,11 +1,15 @@
 #!/usr/bin/python3
 from app.models.user import User
+from app.models.event import Event
+from app.models.photo import Photo
 from app import db, mail
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask import render_template, request, redirect, url_for, flash, current_app as app
 from flask_login import login_user, logout_user, login_required, current_user
 from flask_mail import Message
+from werkzeug.utils import secure_filename
 from itsdangerous import URLSafeTimedSerializer
+import os
 import re
 
 s = URLSafeTimedSerializer(app.config['SECRET_KEY'])
@@ -137,6 +141,34 @@ def collection():
 def account():
     return render_template('account.html')
 
-@app.route('/create_event')
+@app.route('/create_event', methods=['GET', 'POST'])
 def create_event():
+    """Creates an event"""
+    if request.method == 'POST':
+        name = request.form['name']
+        about = request.form['about']
+        cover_photo = request.files['cover']
+        photos =request.files.getlist('photos')
+
+        if cover_photo:
+            cover_filename = secure_filename(cover_photo.filename)
+            cover_photo_path = os.path.join(app.config['UPLOAD_FOLDER'], cover_filename)
+            cover_photo.save(cover_photo_path)
+        
+        new_event = Event(name=name, about=about, cover_photo=cover_filename, user_id=current_user.id)
+        db.session.add(new_event)
+        db.session.commit()
+
+        for photo in photos:
+            if photo:
+                photo_filename = secure_filename(photo.filename)
+                photo_path = os.path.join(app.config['UPLOAD_FOLDER'], photo_filename)
+                photo.save(photo_path)
+
+                new_photo = Photo(file_path=photo_filename, event_id=new_event.id)
+                db.session.add(new_photo)
+
+        db.session.commit()
+        return redirect(url_for('account'))
+    
     return render_template('create_event.html')

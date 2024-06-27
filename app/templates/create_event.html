@@ -34,22 +34,22 @@
                 </ul>
                 {% endif %}
                 {% endwith %}
-            <form action="{{url_for('register')}}", method="post">
+            <form action="{{url_for('create_event')}}", method="post" enctype="multipart/form-data">
                 <div class="mb-4">
                     <label for="name" class="block text-sm font-medium">Event name</label>
-                    <input name="first_name" type="text" id="first-name" class="mt-1 block w-full px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" placeholder="John">
+                    <input name="name" type="text" id="first-name" class="mt-1 block w-full px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" placeholder="John">
                 </div>
                 <div class="mb-4">
-                    <label for="name" class="block text-sm font-medium">About The Event</label>
+                    <label for="about" class="block text-sm font-medium">About The Event</label>
                     <textarea name="about" id="about" rows="5" class="w-full p-2 rounded text-black" required></textarea>
                 </div>
                 <div class="mb-4">
                     <label for="coverPhoto" class="block text-lg mb-2">Cover Photo:</label>
-                    <input type="file" name="coverPhoto" id="coverPhoto" class="w-full p-2 rounded text-white" required>
+                    <input type="file" name="cover" id="coverPhoto" class="w-full p-2 rounded text-white" required>
                 </div>
                 <div class="mb-4">
                     <label for="additionalPhotos" class="block text-lg mb-2">Photos:</label>
-                    <input type="file" name="additionalPhotos" id="additionalPhotos" class="w-full p-2 rounded text-white" multiple>
+                    <input type="file" name="photos" id="additionalPhotos" class="w-full p-2 rounded text-white" multiple>
                 </div>
                 <button type="submit" class="w-full bg-orange-700 text-white py-2 px-4 rounded-md hover:bg-orange-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Add Event +</button>
             </form>
