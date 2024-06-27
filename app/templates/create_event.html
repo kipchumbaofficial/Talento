@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Talento &mdash; Sign-up</title>
+    <link rel="shortcut icon" href="../static/images/logo.jpg" type="image/x-icon">
+    <link rel="stylesheet" href="../static/css/style.css">
+    <link rel="stylesheet" href="../static/css/custom.css">
+</head>
+<body class="bg-black text-white">
+    <div class="container mx-auto px-14">
+        <!--Nav section starts-->
+    <section class="p-4">
+        <header>
+            <div class="flex justify-center items-center p-4">
+                <a href="index.html">
+                    <h1 class="text-2xl font-bold"><span class="text-orange-700">T</span>alento</h1>
+                </a>
+            </div>
+        </header>
+    </section>
+    <!--Nav section ends-->
+    
+    <div class="flex items-center justify-center h-screen">
+        <div class="border border-white p-8 rounded-lg shadow-lg w-full max-w-sm">
+            <h2 class="text-2xl font-bold mb-6 text-center">Sign Up</h2>
+            {% with messages = get_flashed_messages(with_categories=true) %}
+                {% if messages %}
+                <ul>
+                    {% for category, message in messages %}
+                    <li class="{{category}} text-center">{{ message }}</li>
+                    {% endfor %}
+                </ul>
+                {% endif %}
+                {% endwith %}
+            <form action="{{url_for('register')}}", method="post">
+                <div class="mb-4">
+                    <label for="name" class="block text-sm font-medium">Event name</label>
+                    <input name="first_name" type="text" id="first-name" class="mt-1 block w-full px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" placeholder="John">
+                </div>
+                <div class="mb-4">
+                    <label for="name" class="block text-sm font-medium">About The Event</label>
+                    <textarea name="about" id="about" rows="5" class="w-full p-2 rounded text-black" required></textarea>
+                </div>
+                <div class="mb-4">
+                    <label for="coverPhoto" class="block text-lg mb-2">Cover Photo:</label>
+                    <input type="file" name="coverPhoto" id="coverPhoto" class="w-full p-2 rounded text-white" required>
+                </div>
+                <div class="mb-4">
+                    <label for="additionalPhotos" class="block text-lg mb-2">Photos:</label>
+                    <input type="file" name="additionalPhotos" id="additionalPhotos" class="w-full p-2 rounded text-white" multiple>
+                </div>
+                <button type="submit" class="w-full bg-orange-700 text-white py-2 px-4 rounded-md hover:bg-orange-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Add Event +</button>
+            </form>
+        </div>
+    
+    </div>
+    </div>
+    
+</body>
+</html>

@@ -13,8 +13,9 @@
             <!--Nav section starts-->
             <section>
               <header>
-                  <div class="flex justify-center items-center p-4">
+                  <div class="flex justify-between items-center p-4">
                       <a href="{{url_for('index')}}"><h1 class="text-2xl font-bold"><span class="text-orange-700">T</span>alento</h1></a>
+                      <a href="#" class="text-white"><i class="fa-solid fa-bars"></i></a>
                   </div>
               </header>
           </section>
@@ -30,7 +31,6 @@
       <div class="flex-1 md:ml-6 mt-4 md:mt-0">
         <div class="flex flex-col md:flex-row items-center">
           <h2 class="text-2xl font-semibold">Username</h2>
-          <button class="ml-0 md:ml-4 mt-2 md:mt-0 px-4 py-2 bg-blue-500 text-white rounded-md">Follow</button>
         </div>
         <div class="flex mt-4 space-x-4">
           <div>
@@ -53,6 +53,11 @@
             </div>
         </div>
       </div>
+    </div>
+
+    <!-- Create Post Button -->
+    <div class="flex justify-end mt-6">
+        <a href="{{url_for('create_event')}}" class="bg-orange-700 text-white px-4 py-2 rounded hover:bg-orange-600">Add Event +</a>
     </div>
 
     <!-- Posts Grid -->

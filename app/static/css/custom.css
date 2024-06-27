@@ -11,3 +11,42 @@
 .info {
     color: blue;
 }
+.protected {
+    -webkit-user-drag: none;
+    pointer-events: none;
+}
+
+/* Custom Checkbox Styles */
+.form-checkbox {
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    width: 16px;
+    height: 16px;
+    border: 1px solid #ffffff;
+    background-color: transparent;
+    cursor: pointer;
+    position: relative;
+    outline: none;
+  }
+
+  .form-checkbox:checked::before {
+    content: '\2714'; /* Unicode for checkmark */
+    display: block;
+    font-size: 12px;
+    text-align: center;
+    position: absolute;
+    left: 0;
+    top: -2px;
+    width: 100%;
+    height: 100%;
+    color: #007bff; /* Blue checkmark */
+  }
+
+  .form-checkbox:checked.form-checkbox-orange::before {
+    color: #ffa500; /* Orange checkmark */
+  }
+
+  .form-checkbox:hover {
+    border-color: #cccccc;
+  }

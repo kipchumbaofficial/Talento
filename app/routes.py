@@ -128,3 +128,15 @@ def reset(token):
         return redirect(url_for('login'))
     
     return render_template('reset-password.html', token=token)
+
+@app.route('/collection')
+def collection():
+    return render_template('collection.html')
+
+@app.route('/account')
+def account():
+    return render_template('account.html')
+
+@app.route('/create_event')
+def create_event():
+    return render_template('create_event.html')
