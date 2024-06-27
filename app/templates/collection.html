@@ -26,22 +26,23 @@
     <div class="flex flex-col md:flex-row items-center md:items-start md:justify-between bg-transparent border border-white p-4 rounded-lg shadow-md">
         <!-- Profile Picture -->
         <div class="w-24 h-24 md:w-32 md:h-32 rounded overflow-hidden">
-            <img src="../static/images/profile.jpg" alt="Profile Picture" class="w-full h-full object-cover">
+            <img src="{{ url_for('static', filename='/images/' + event.cover_photo) }}" alt="Profile Picture" class="w-full h-full object-cover">
         </div>
         <!-- Profile Info -->
         <div class="flex-1 md:ml-6 mt-4 md:mt-0">
             <div class="flex flex-col md:flex-row items-center">
-                <h2 class="text-2xl font-semibold">Blankets & Wine</h2>
+                <h2 class="text-2xl font-semibold">{{ event.name }}</h2>
             </div>
-            <p class="mt-4">The amazing event that took place on 14th of this check out the collection and purchase the photos</p>
+            <p class="mt-4">{{ event.about }}</p>
         </div>
     </div>
 
     <!-- Posts Grid -->
     <div class="mt-6 grid grid-cols-3 gap-4">
-      <!-- Post 1 -->
+      <!-- Post -->
+      {% for photo in photos %}
       <div class="relative w-full h-48 bg-gray-300 rounded-lg overflow-hidden">
-        <img src="../static/images/interior.jpg" alt="Post Image" class="w-full h-full object-cover protected">
+        <img src="{{ url_for('static', filename='/images/' + photo.file_path) }}" alt="Post Image" class="w-full h-full object-cover protected">
         <div class="absolute inset-0 bg-black bg-opacity-50 text-white flex flex-col justify-between p-2">
             <label class="inline-flex items-center">
                 <input type="checkbox" class="form-checkbox h-5 w-5 text-blue-600">
@@ -56,41 +57,7 @@
             </div>
         </div>
       </div>
-      <!-- Post 2 -->
-      <div class="relative w-full h-48 bg-gray-300 rounded-lg overflow-hidden">
-        <img src="../static/images/hair-dressers.jpg" alt="Post Image" class="w-full h-full object-cover">
-        <div class="absolute inset-0 bg-black bg-opacity-50 text-white flex flex-col justify-between p-2">
-            <label class="inline-flex items-center">
-                <input type="checkbox" class="form-checkbox h-5 w-5 text-blue-600 bg-transparent">
-                <span class="ml-2"></span>
-            </label>
-            <div class="flex justify-center items-center">
-                    <div class="space-x-2">
-                        <a href="#" class="text-white"><i class="fab fa-facebook"></i></a>
-                        <a href="#" class="text-white"><i class="fab fa-instagram"></i></a>
-                        <a href="#" class="text-white"><i class="fab fa-twitter"></i></a>
-                    </div>
-            </div>
-        </div>
-      </div>
-      <!-- Post 3 -->
-      <div class="relative w-full h-48 bg-gray-300 rounded-lg overflow-hidden">
-        <img src="../static/images/camera.jpg" alt="Post Image" class="w-full h-full object-cover">
-        <div class="absolute inset-0 bg-black bg-opacity-50 text-white flex flex-col justify-between p-2">
-            <label class="inline-flex items-center">
-                <input type="checkbox" class="form-checkbox h-5 w-5 text-blue-600 bg-transparent">
-                <span class="ml-2"></span>
-            </label>
-            <div class="flex justify-center items-center">
-                <div class="space-x-2 justify-center">
-                    <a href="#" class="text-white"><i class="fab fa-facebook"></i></a>
-                    <a href="#" class="text-white"><i class="fab fa-instagram"></i></a>
-                    <a href="#" class="text-white"><i class="fab fa-twitter"></i></a>
-                </div>
-            </div>
-        </div>
-      </div>
-      <!-- Additional posts can be added similarly -->
+      {% endfor %}
     </div>
   </div>
   <script src="#"></script>

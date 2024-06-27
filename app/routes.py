@@ -133,13 +133,17 @@ def reset(token):
     
     return render_template('reset-password.html', token=token)
 
-@app.route('/collection')
-def collection():
-    return render_template('collection.html')
+@app.route('/collection/<event_id>')
+def collection(event_id):
+    photos = Photo.query.filter_by(event_id=event_id).all()
+    event = Event.query.get_or_404(event_id)
+    print(event)
+    return render_template('collection.html', photos=photos, event=event)
 
 @app.route('/account')
 def account():
-    return render_template('account.html')
+    events = Event.query.filter_by(user_id=current_user.id).all()
+    return render_template('account.html', events=events)
 
 @app.route('/create_event', methods=['GET', 'POST'])
 def create_event():
