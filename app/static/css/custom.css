@@ -30,6 +30,10 @@
     outline: none;
   }
 
+  .form-checkbox:checked {
+    background-color: white; /* Orange background when checked */
+  }
+
   .form-checkbox:checked::before {
     content: '\2714'; /* Unicode for checkmark */
     display: block;
@@ -40,11 +44,7 @@
     top: -2px;
     width: 100%;
     height: 100%;
-    color: #007bff; /* Blue checkmark */
-  }
-
-  .form-checkbox:checked.form-checkbox-orange::before {
-    color: #ffa500; /* Orange checkmark */
+    color: #ffffff; /* White checkmark */
   }
 
   .form-checkbox:hover {

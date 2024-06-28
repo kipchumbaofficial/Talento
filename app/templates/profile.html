@@ -29,18 +29,14 @@
       <!-- Profile Info -->
       <div class="flex-1 md:ml-6 mt-4 md:mt-0">
         <div class="flex flex-col md:flex-row items-center">
-          <h2 class="text-2xl font-semibold">Username</h2>
-          <button class="ml-0 md:ml-4 mt-2 md:mt-0 px-4 py-2 bg-blue-500 text-white rounded-md">Follow</button>
+          <h2 class="text-2xl font-semibold">{{ user.first_name }}</h2>
         </div>
         <div class="flex mt-4 space-x-4">
           <div>
-            <span class="font-semibold">150</span> <P>posts</P>
+            <span class="font-semibold">{{ event_count }}</span> <P>Events</P>
           </div>
           <div>
-            <span class="font-semibold">1.2k</span> <p>followers</p>
-          </div>
-          <div>
-            <span class="font-semibold">180</span> <p>following</p>
+            <span class="font-semibold">{{ photo_count }}</span> <p>Photos</p>
           </div>
         </div>
         <p class="mt-4">Bio: This is a short bio about the user.</p>
@@ -48,7 +44,7 @@
             <div class="space-x-2 justify-center">
                 <a href="#" class="text-white"><i class="fab fa-facebook"></i></a>
                 <a href="#" class="text-white"><i class="fab fa-instagram"></i></a>
-                <a href="#" class="text-white"><i class="fab fa-twitter"></i></a>
+                <a href="#" class="text-white"><i class="fa-brands fa-square-x-twitter"></i></a>
                 <a href="#" class="text-white"><i class="fab fa-whatsapp"></i></a>
             </div>
         </div>
@@ -57,28 +53,18 @@
 
     <!-- Posts Grid -->
     <div class="mt-6 grid grid-cols-3 gap-4">
+      {% for event in events %}
       <!-- Post 1 -->
       <div class="relative w-full h-48 bg-gray-300 rounded-lg overflow-hidden">
-        <a href="{{url_for('collection')}}"><img src="../static/images/interior.jpg" alt="Post Image" class="w-full h-full object-cover"></a>
+        <a href="{{url_for('collection', event_id=event.id)}}">
+            <img src="{{ url_for('static', filename='/images/' + event.cover_photo) }}" alt="Post Image" class="w-full h-full object-cover">
+        </a>
         <div class="absolute bottom-0 left-0 bg-black bg-opacity-50 text-white w-full p-2">
-          <h2 class="text-xl">Blankets & Wine</h2>
+          <h2 class="text-xl">{{ event.name }}</h2>
         </div>
       </div>
+      {% endfor %}
       <!-- Post 2 -->
-      <div class="relative w-full h-48 bg-gray-300 rounded-lg overflow-hidden">
-          <a href="{{url_for('collection')}}"><img src="../static/images/hair-dressers.jpg" alt="Post Image" class="w-full h-full object-cover"></a>
-          <div class="absolute bottom-0 left-0 bg-black bg-opacity-50 text-white w-full p-2">
-              <h2 class="text-xl">Blankets & Wine</h2>
-          </div>  
-      </div>
-      <!-- Post 3 -->
-      <div class="relative w-full h-48 bg-gray-300 rounded-lg overflow-hidden">
-          <img src="../static/images/camera.jpg" alt="Post Image" class="w-full h-full object-cover">
-          <div class="absolute bottom-0 left-0 bg-black bg-opacity-50 text-white w-full p-2">
-              <h2 class="text-xl">Blankets & Wine</h2>
-          </div>
-      </div>
-      <!-- Additional posts can be added similarly -->
     </div>
   </div>
 </body>

@@ -34,7 +34,7 @@ def login():
             flash('Invalid credentials', 'error')
             return redirect(url_for('login'))
         login_user(user)
-        return redirect(url_for('profile'))
+        return redirect(url_for('account'))
 
     return render_template('login.html')
 
@@ -66,10 +66,13 @@ def register():
 def search():
     return render_template('search.html')
 
-@app.route('/profile')
-@login_required
-def profile():
-    return render_template('profile.html')
+@app.route('/profile/<username>')
+def profile(username):
+    user = User.query.filter_by(first_name=username).first()
+    events = user.events
+    event_count = len(events)
+    photo_count = sum(len(event.photos) for event in events)
+    return render_template('profile.html', user=user, events=events, event_count=event_count, photo_count=photo_count)
 
 @app.route('/logout')
 @login_required
@@ -141,6 +144,7 @@ def collection(event_id):
     return render_template('collection.html', photos=photos, event=event)
 
 @app.route('/account')
+@login_required
 def account():
     events = Event.query.filter_by(user_id=current_user.id).all()
     return render_template('account.html', events=events)
@@ -176,3 +180,16 @@ def create_event():
         return redirect(url_for('account'))
     
     return render_template('create_event.html')
+
+@app.route('/home')
+def home():
+    events = Event.query.limit(10).all()
+    return render_template('home.html', events=events)
+
+@app.route('/event/<event_id>')
+def event(event_id):
+    photos = Photo.query.filter_by(event_id=event_id).all()
+    event = Event.query.get_or_404(event_id)
+    creator = event.user
+    print(event)
+    return render_template('event.html', photos=photos, event=event, creator=creator)
