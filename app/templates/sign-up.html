@@ -23,7 +23,7 @@
     <!--Nav section ends-->
     
     <div class="flex items-center justify-center h-screen">
-        <div class="border border-white p-8 rounded-lg shadow-lg w-full max-w-sm">
+        <div class="border border-white p-4 rounded-lg shadow-lg w-full max-w-sm">
             <h2 class="text-2xl font-bold mb-6 text-center">Sign Up</h2>
             {% with messages = get_flashed_messages(with_categories=true) %}
                 {% if messages %}
@@ -34,18 +34,22 @@
                 </ul>
                 {% endif %}
                 {% endwith %}
-            <form action="{{url_for('register')}}", method="post">
+            <form action="{{url_for('register')}}", method="post", enctype="multipart/form-data">
                 <div class="mb-4">
-                    <label for="email" class="block text-sm font-medium">First Name</label>
-                    <input name="first_name" type="text" id="first-name" class="mt-1 block w-full px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" placeholder="John">
+                    <label for="email" class="block text-sm font-medium">Username</label>
+                    <input class="shadow appearance-none border rounded w-full py-2 px-3 text-black mb-3 leading-tight focus:outline-none focus:shadow-outline" id="username" type="text" placeholder="John" name="username">
                 </div>
                 <div class="mb-4">
-                    <label for="email" class="block text-sm font-medium">Last Name</label>
-                    <input name="last_name" type="text" id="last-name" class="mt-1 block w-full px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" placeholder="Doe">
+                    <label for="coverPhoto" class="block text-lg mb-2">Profile Picture:</label>
+                    <input type="file" name="profile_photo" id="coverPhoto" class="w-full p-2 rounded text-white" required>
+                </div>
+                <div class="mb-4">
+                    <label for="about" class="block text-sm font-medium">About</label>
+                    <textarea name="about" id="about" rows="1" class="w-full p-2 rounded text-black" required></textarea>
                 </div>
                 <div class="mb-4">
                     <label for="email" class="block text-sm font-medium">Email</label>
-                    <input name="email" type="email" id="email" class="mt-1 block w-full px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" placeholder="you@example.com">
+                    <input class="shadow appearance-none border rounded w-full py-2 px-3 text-black mb-3 leading-tight focus:outline-none focus:shadow-outline" id="email" type="text" placeholder="you@example.com" name="email">
                 </div>
                 <div class="mb-6">
                     <label for="password" class="block text-sm font-medium">Password</label>

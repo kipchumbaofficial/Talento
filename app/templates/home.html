@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Talento</title>
+  <link href="../static/css/style.css" rel="stylesheet">
+  <link rel="stylesheet" href="../static/css/custom.css">
+  <link rel="shortcut icon" href="../static/images/logo.jpg" type="image/x-icon">
+  <script src="https://kit.fontawesome.com/c893f91b93.js" crossorigin="anonymous"></script>
+</head>
+<body class="bg-black text-white">
+    <div class="max-w-5xl mx-auto p-4">
+        <!-- Nav section starts -->
+        <section>
+          <header>
+            <div class="flex justify-center items-center p-4">
+              <a href="{{url_for('index')}}"><h1 class="text-2xl font-bold"><span class="text-orange-700">T</span>alento</h1></a>
+            </div>
+          </header>
+        </section>
+        <!-- Nav section ends -->
+         <h1>Recent Events</h1>
+        <!-- Posts Grid -->
+        <div class="mt-6 grid grid-cols-3 gap-4">
+            <!-- Post -->
+             {% for event in events %}
+             <div class="relative w-full h-48 bg-gray-300 rounded-lg overflow-hidden">
+                <a href="{{url_for('event', event_id=event.id)}}">
+                    <img src="{{ url_for('static', filename='/images/' + event.cover_photo) }}" alt="Post Image" class="w-full h-full object-cover">
+                </a>
+                <div class="absolute bottom-0 left-0 bg-black bg-opacity-50 text-white w-full p-2">
+                  <h2 class="text-xl">{{ event.name }}</h2>
+                </div>
+              </div>
+            {% endfor %}
+        </div>
+    </div>
+</body>
+</html>

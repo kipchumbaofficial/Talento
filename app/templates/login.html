@@ -24,7 +24,7 @@
             <form action="{{url_for('login')}}", method="post">
                 <div class="mb-4">
                     <label for="email" class="block text-sm font-medium">Email</label>
-                    <input name="email" type="email" id="email" class="mt-1 block w-full px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-orange-500 focus:border-orange-500 sm:text-sm" placeholder="you@example.com">
+                    <input class="shadow appearance-none border rounded w-full py-2 px-3 text-black mb-3 leading-tight focus:outline-none focus:shadow-outline" id="password" type="text" placeholder="you@example.com" name="email">
                 </div>
                 <div class="mb-6">
                     <label for="password" class="block text-sm font-medium">Password</label>
@@ -36,13 +36,13 @@
                         <label for="remember_me" class="ml-2 block text-sm"> Remember me </label>
                     </div>
                     <div class="text-sm">
-                        <a href="forgot-password.html" class="font-medium text-orange-700 hover:text-orange-500"> Forgot your password? </a>
+                        <a href="{{url_for('forgot')}}" class="font-medium text-orange-700 hover:text-orange-500"> Forgot your password? </a>
                     </div>
                 </div>
                 <button type="submit" class="w-full bg-orange-700 text-white py-2 px-4 rounded-md hover:bg-orange-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-orange-700">Login</button>
             </form>
             <p class="mt-4 text-center text-sm">
-                Don't have an account? <a href="sign-up.html" class="font-medium text-orange-700 hover:text-orange-800">Sign up</a>
+                Don't have an account? <a href="{{url_for('register')}}" class="font-medium text-orange-700 hover:text-orange-800">Sign up</a>
             </p>
         </div>
     </div>
