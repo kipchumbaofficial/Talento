@@ -37,11 +37,11 @@
             <form action="{{url_for('create_event')}}", method="post" enctype="multipart/form-data">
                 <div class="mb-4">
                     <label for="name" class="block text-sm font-medium">Event name</label>
-                    <input name="name" type="text" id="first-name" class="mt-1 block w-full px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" placeholder="John">
+                    <input class="shadow appearance-none border rounded w-full py-2 px-3 text-black mb-3 leading-tight focus:outline-none focus:shadow-outline" id="password" type="text" placeholder="Event Name" name="name">
                 </div>
                 <div class="mb-4">
                     <label for="about" class="block text-sm font-medium">About The Event</label>
-                    <textarea name="about" id="about" rows="5" class="w-full p-2 rounded text-black" required></textarea>
+                    <textarea name="about" id="about" rows="1" class="w-full p-2 rounded text-black" required></textarea>
                 </div>
                 <div class="mb-4">
                     <label for="coverPhoto" class="block text-lg mb-2">Cover Photo:</label>
@@ -50,6 +50,10 @@
                 <div class="mb-4">
                     <label for="additionalPhotos" class="block text-lg mb-2">Photos:</label>
                     <input type="file" name="photos" id="additionalPhotos" class="w-full p-2 rounded text-white" multiple>
+                </div>
+                <div class="mb-4">
+                    <label for="name" class="block text-sm font-medium">Price per photo:</label>
+                    <input class="shadow appearance-none border rounded w-full py-2 px-3 text-black mb-3 leading-tight focus:outline-none focus:shadow-outline" id="password" type="number" placeholder="Price of a photo" name="price">
                 </div>
                 <button type="submit" class="w-full bg-orange-700 text-white py-2 px-4 rounded-md hover:bg-orange-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Add Event +</button>
             </form>

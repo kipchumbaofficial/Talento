@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Talento</title>
   <link rel="stylesheet" href="../static/css/style.css">
+  <link rel="stylesheet" href="../static/css/custom.css">
   <link rel="shortcut icon" href="../static/images/logo.jpg" type="image/x-icon">
   <script src="https://kit.fontawesome.com/c893f91b93.js" crossorigin="anonymous"></script>
 </head>
@@ -15,7 +16,13 @@
               <header>
                   <div class="flex justify-between items-center p-4">
                       <a href="{{url_for('index')}}"><h1 class="text-2xl font-bold"><span class="text-orange-700">T</span>alento</h1></a>
-                      <a href="#" class="text-white"><i class="fa-solid fa-bars"></i></a>
+                      <p class="text-white" id="menu-toggle">Menu<i class="fa-solid fa-bars"></i></p>
+                  </div>
+                  <!-- Pop-up menu -->
+                  <div id="popup-menu" class="hidden absolute right-4 mt-4 bg-black border border-white rounded-lg shadow-md w-40 md:w-48">
+                      <a href="#" class="block px-4 py-2 text-white hover:bg-gray-700">Update Profile</a>
+                      <a href="{{ url_for('logout') }}" class="block px-4 py-2 text-white hover:bg-gray-700">Logout</a>
+                      <a href="#" class="block px-4 py-2 text-white hover:bg-gray-700">Wallet</a>
                   </div>
               </header>
           </section>
@@ -25,25 +32,22 @@
     <div class="flex flex-col md:flex-row items-center md:items-start md:justify-between bg-transparent border border-white p-4 rounded-lg shadow-md">
       <!-- Profile Picture -->
       <div class="w-24 h-24 md:w-32 md:h-32 rounded-full overflow-hidden">
-        <img src="../static/images/profile.jpg" alt="Profile Picture" class="w-full h-full object-cover">
+        <img src="{{ url_for('static', filename='/images/' + current_user.profile_photo) }}" alt="Profile Picture" class="w-full h-full object-cover">
       </div>
       <!-- Profile Info -->
       <div class="flex-1 md:ml-6 mt-4 md:mt-0">
         <div class="flex flex-col md:flex-row items-center">
-          <h2 class="text-2xl font-semibold">{{ current_user.first_name }}</h2>
+          <h2 class="text-2xl font-semibold">{{ current_user.username }}</h2>
         </div>
         <div class="flex mt-4 space-x-4">
           <div>
-            <span class="font-semibold">150</span> <P>posts</P>
+            <span class="font-semibold">{{ event_count }}</span> <P>Events</P>
           </div>
           <div>
-            <span class="font-semibold">1.2k</span> <p>followers</p>
-          </div>
-          <div>
-            <span class="font-semibold">180</span> <p>following</p>
+            <span class="font-semibold">{{ photo_count }}</span> <p>Photos</p>
           </div>
         </div>
-        <p class="mt-4">Bio: This is a short bio about the user.</p>
+        <p class="mt-4">{{ current_user.about }}</p>
           <div class="flex justify-center items-center">
             <div class="space-x-2 justify-center">
                 <a href="#" class="text-white"><i class="fab fa-facebook"></i></a>
@@ -56,7 +60,7 @@
     </div>
 
     <!-- Create Post Button -->
-    <div class="flex justify-end mt-6">
+    <div class="flex mt-6">
         <a href="{{url_for('create_event')}}" class="bg-orange-700 text-white px-4 py-2 rounded hover:bg-orange-600">Add Event +</a>
     </div>
 
@@ -75,5 +79,6 @@
       {% endfor %}
     </div>
   </div>
+  <script src="../static/js/hamburger.js"></script>
 </body>
 </html>

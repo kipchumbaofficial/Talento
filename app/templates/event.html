@@ -16,7 +16,10 @@
       <header>
         <div class="flex justify-between items-center p-4">
           <a href="{{url_for('index')}}"><h1 class="text-2xl font-bold"><span class="text-orange-700">T</span>alento</h1></a>
-          <a href="#" class="text-white"><i class="fa-solid fa-cloud-arrow-down"></i></a>
+          <div id="downloadSection" class="hidden relative">
+            <i class="fa-solid fa-cloud-arrow-down text-2xl"></i>
+            <span id="selectedCount" class="absolute -top-2 -right-2 bg-yellow-500 text-black rounded-full px-2 py-0.5 text-xs font-bold">0</span>
+          </div>
         </div>
       </header>
     </section>
@@ -33,7 +36,7 @@
             <div class="flex flex-col md:flex-row items-center">
                 <h2 class="text-2xl font-semibold">{{ event.name }}</h2>
             </div>
-            <a href="{{ url_for('profile', username=creator.first_name) }}" class="text-orange-700"><span class="text-white">by</span> {{ creator.first_name }}</a>
+            <a href="{{ url_for('profile', username=creator.username) }}" class="text-orange-700"><span class="text-white">by</span> {{ creator.username }}</a>
             <p class="mt-4">{{ event.about }}</p>
         </div>
     </div>
@@ -45,11 +48,11 @@
       <div class="relative w-full h-48 bg-gray-300 rounded-lg overflow-hidden">
         <img src="{{ url_for('static', filename='/images/' + photo.file_path) }}" alt="Post Image" class="w-full h-full object-cover protected">
         <!-- Price Tag -->
-        <div class="absolute top-2 right-2 bg-orange-500 text-black font-bold px-2 py-1 rounded">Ksh 100</div>
+        <div class="absolute top-2 right-2 bg-orange-500 text-black font-bold px-2 py-1 rounded">Ksh {{photo.price}}</div>
 
         <div class="absolute inset-0 bg-black bg-opacity-50 text-white flex flex-col justify-between p-2">
             <label class="inline-flex items-center">
-                <input type="checkbox" class="form-checkbox h-5 w-5 text-blue-600">
+                <input type="checkbox" class="form-checkbox photo-checkbox h-5 w-5 text-blue-600">
                 <span class="ml-2"></span>
             </label>
             <div class="flex justify-center items-center">
@@ -64,6 +67,6 @@
       {% endfor %}
     </div>
   </div>
-  <script src="#"></script>
+  <script src="../static/js/dowload.js"></script>
 </body>
 </html>

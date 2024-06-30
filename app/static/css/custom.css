@@ -50,3 +50,6 @@
   .form-checkbox:hover {
     border-color: #cccccc;
   }
+ .hidden {
+  display: none;
+ }

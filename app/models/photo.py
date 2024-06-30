@@ -8,4 +8,5 @@ class Photo(db.Model):
     __tablename__ = 'photo'
     id = db.Column(db.Integer, primary_key=True)
     file_path = db.Column(db.String(255), nullable=False)
+    price = db.Column(db.Integer)
     event_id = db.Column(db.Integer, db.ForeignKey('event.id'), nullable=False)
