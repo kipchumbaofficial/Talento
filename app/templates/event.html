@@ -17,8 +17,15 @@
         <div class="flex justify-between items-center p-4">
           <a href="{{url_for('index')}}"><h1 class="text-2xl font-bold"><span class="text-orange-700">T</span>alento</h1></a>
           <div id="downloadSection" class="hidden relative">
-            <i class="fa-solid fa-cloud-arrow-down text-2xl"></i>
-            <span id="selectedCount" class="absolute -top-2 -right-2 bg-yellow-500 text-black rounded-full px-2 py-0.5 text-xs font-bold">0</span>
+              <form id="checkoutForm" action="{{ url_for('checkout') }}" method="POST" class="flex items-center space-x-4">
+                <input type="hidden" name="count" id="photoCount">
+                <input type="hidden" name="total" id="totalPrice">
+                <input type="hidden" name="price" id="price">
+                <input type="hidden" name="selected_photos" id="selectedPhotos">
+                <button id="submit" class="text-white" type="submit"><i class="fa-solid fa-cloud-arrow-down text-2xl"></i></button>
+                <span id="selectedCount" class="absolute -top-2 -right-2 bg-yellow-500 text-black rounded-full px-2 py-0.5 text-xs font-bold">0</span>
+              </form>
+
           </div>
         </div>
       </header>
@@ -52,7 +59,7 @@
 
         <div class="absolute inset-0 bg-black bg-opacity-50 text-white flex flex-col justify-between p-2">
             <label class="inline-flex items-center">
-                <input type="checkbox" class="form-checkbox photo-checkbox h-5 w-5 text-blue-600">
+                <input type="checkbox" data-price="{{ photo.price }}" class="form-checkbox photo-checkbox h-5 w-5 text-blue-600">
                 <span class="ml-2"></span>
             </label>
             <div class="flex justify-center items-center">
