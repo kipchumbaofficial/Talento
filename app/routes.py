@@ -6,7 +6,7 @@ from app.models.event import Event
 from app.models.photo import Photo
 from app import db, mail
 from werkzeug.security import generate_password_hash, check_password_hash
-from flask import render_template, request, redirect, url_for, flash, current_app as app
+from flask import session, jsonify, render_template, request, redirect, url_for, flash, current_app as app
 from flask_login import login_user, logout_user, login_required, current_user
 from flask_mail import Message
 from werkzeug.utils import secure_filename
@@ -226,6 +226,50 @@ def event(event_id):
     print(event)
     return render_template('event.html', photos=photos, event=event, creator=creator)
 
-@app.route('/check-out')
+@app.route('/prepare_checkout', methods=['POST', 'GET'])
+def prepare_checkout():
+    checkout_data = request.get_json()
+    price = checkout_data.get('price')
+    count = checkout_data.get('count')
+    total = checkout_data.get('total')
+    selected_photos = checkout_data.get('selected_photos')
+
+    app.logger.debug(f'Price: {price}, Count: {count}, Total: {total}, Selected Photos: {selected_photos}')
+
+    session['checkout_data'] = {
+            'price': price,
+            'count': count,
+            'total': total,
+            'selected_photos': selected_photos
+    }
+    return jsonify({'success': True, 'redirect_url': url_for('checkout')})
+
+@app.route('/payment', methods=['POST'])
+def payment():
+    phone_number = request.form['number']
+    checkout_data = session.get('checkout_data', {})
+    #total_price = checkout_data.get('count')
+    selected_photos = checkout_data.get('price')
+
+    if phone_number:
+        session['selected_photos'] = selected_photos
+        flash('Payment successful! You can now download your photos.', 'success')
+        return redirect(url_for('download'))
+    else:
+        flash('Payment failed! Please try agin', 'error')
+        return redirect(url_for('checkout'))
+    
+@app.route('/checkout', methods=['POST', 'GET'])
 def checkout():
-    return render_template('checkout.html')
+    checkout_data = session.get('checkout_data', {})
+    total = checkout_data.get('total')
+    price = checkout_data.get('price')
+    count = checkout_data.get('count')
+    selected_photos = checkout_data.get('selected_photos')
+    return render_template('checkout.html', price=price, total=total,
+                            count=count, selected_photos=selected_photos)
+
+@app.route('/download')
+def download():
+    selected_photos = session.get('checkout_data', {}).get('selected_photos', [])
+    return render_template('download.html', selected_photos=selected_photos)

@@ -21,18 +21,22 @@
             </ul>
             {% endif %}
             {% endwith %}
-            <form action="#", method="post">
+            <form action="{{ url_for('payment') }}" method="post">
+                <input type="hidden" name="price" value="{{ price }}">
+                <input type="hidden" name="count" value="{{ count }}">
+                <input type="hidden" name="total" value="{{ total }}">
+                <input type="hidden" name="selected_photos" value="{{ selected_photos }}">
                 <div class="mb-4">
                     <h1>Price per Photo:</h1>
-                    <p class="text-2xl text-orange-700">Ksh 100</p>
+                    <p class="text-2xl text-orange-700">Ksh {{ price }}</p>
                 </div>
                 <div class="mb-4">
                     <h1>Photos Selected:</h1>
-                    <p class="text-2xl text-orange-700">5</p>
+                    <p class="text-2xl text-orange-700">{{ count }}</p>
                 </div>
                 <div class="mb-4">
                     <h1>Total Price:</h1>
-                    <p class="text-2xl text-orange-700">Ksh 100</p>
+                    <p class="text-2xl text-orange-700">Ksh {{total}}</p>
                 </div>
                 <div class="mb-6">
                     <label for="phone" class="block text-sm font-medium">Mpesa number</label>
