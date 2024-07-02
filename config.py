@@ -14,4 +14,4 @@ class Config:
     MAIL_USE_SSL = False
     MAIL_USERNAME = 'victorkipchumba039@gmail.com'
     MAIL_PASSWORD = 'howv zrbi jiyj aldi'
-    UPLOAD_FOLDER = './app/static/images'
+    UPLOAD_FOLDER = './app/static/images/uploads'
