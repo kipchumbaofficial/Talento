@@ -13,6 +13,7 @@ from werkzeug.utils import secure_filename
 from itsdangerous import URLSafeTimedSerializer
 import os
 import re
+import uuid
 
 s = URLSafeTimedSerializer(app.config['SECRET_KEY'])
 
@@ -57,7 +58,8 @@ def register():
             return redirect(url_for('register'))
         
         if profile_photo:
-            profile_filename = secure_filename(profile_photo.filename)
+            photo_extension = os.path.splitext(secure_filename(profile_photo.filename))[1]
+            profile_filename = f"{uuid.uuid4().hex}{photo_extension}"
             profile_photo_path = os.path.join(app.config['UPLOAD_FOLDER'], profile_filename)
             profile_photo.save(profile_photo_path)
 
@@ -186,7 +188,8 @@ def create_event():
         price = request.form['price']
 
         if cover_photo:
-            cover_filename = secure_filename(cover_photo.filename)
+            cover_extension = os.path.splitext(secure_filename(cover_photo.filename))[1]
+            cover_filename = f"{uuid.uuid4().hex}{cover_extension}"
             cover_photo_path = os.path.join(app.config['UPLOAD_FOLDER'], cover_filename)
             cover_photo.save(cover_photo_path)
         
@@ -197,7 +200,8 @@ def create_event():
 
         for photo in photos:
             if photo:
-                photo_filename = secure_filename(photo.filename)
+                photo_extension = os.path.splitext(secure_filename(photo.filename))[1]
+                photo_filename = f"{uuid.uuid4().hex}{photo_extension}"
                 photo_path = os.path.join(app.config['UPLOAD_FOLDER'], photo_filename)
                 photo.save(photo_path)
 

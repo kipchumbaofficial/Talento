@@ -5,203 +5,125 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Talento</title>
     <link rel="stylesheet" href="../static/css/style.css">
-    <link rel="stylesheet" href="../static/css/custom.css">
     <link rel="shortcut icon" href="../static/images/logo.jpg" type="image/x-icon">
+    <script src="https://kit.fontawesome.com/c893f91b93.js" crossorigin="anonymous"></script>
+    <style>
+        .home-bg {
+            background-image: url('../static/images/camera.jpg');
+            background-size: cover;
+            background-position: center;
+        }
+    </style>
 </head>
 <body class="bg-black text-white">
-    <div class="container mx-auto px-14">
-        <!--Nav section starts-->
-        <section>
-            <header>
-                <div class="flex justify-between items-center p-4">
-                    <a href="index.html">
-                        <h1 class="text-2xl font-bold"><span class="text-orange-700">T</span>alento</h1>
-                    </a>
-                    <a href="sign-up.html">
-                        <button class="bg-transparent font-bold py-2 px-4 border border-white rounded hover:bg-white hover:text-black focus:outline-none focus:shadow-outline">
-                            Register
-                        </button>
-                    </a>
-                </div>
-            </header>
-        </section>
-        <!--Nav section ends-->
+    <div class="container mx-auto px-4">
+        <!-- Nav section starts -->
+        <header class="flex justify-between items-center p-4">
+            <a href="index.html">
+                <h1 class="text-2xl font-bold"><span class="text-orange-700">T</span>alento</h1>
+            </a>
+            <a href="{{url_for('home')}}" class="text-2xl"><i class="fa-solid fa-house"></i></a>
+        </header>
+        <!-- Nav section ends -->
 
-        <div class="border-t border-white my-4 p-4"></div>
-        <!--Home-->
-        <section class="flex justify-between items-start">
-            <div class="w-2/3 p-4">
-                <h2 class="text-3xl font-bold mb-4">Welcome to Talento</h2>
-                <p class="mb-4">Find the best talent for your projects. Whether you need a graphic designer, photographer, or web developer, we have the right professionals for you.</p>
-                <p class="mb-4">Join us and start hiring top talent today!</p>
-                <div>
-                    <div class="flex  items-center space-x-2">
-                        <input type="text" placeholder="Who are you looking to hire?" class="py-2 px-4 rounded border border-white text-black">
-                        <button class="bg-transparent font-bold py-2 px-4 border border-white rounded hover:bg-white hover:text-black focus:outline-none focus:shadow-outline">
-                            Search
-                        </button>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="w-1/3 p-4 bg-gray-800 rounded-lg">
-                <h3 class="text-2xl font-bold mb-4">Login</h3>
-                <form action="{{url_for('login')}}" method="post">
-                    <div class="mb-4">
-                        <label class="block text-white text-sm font-bold mb-2" for="username">
-                            Email
-                        </label>
-                        <input class="shadow appearance-none border rounded w-full py-2 px-3 text-black leading-tight focus:outline-none focus:shadow-outline" id="email" type="text" placeholder="you@example.com" name="email">
-                    </div>
-                    <div class="mb-4">
-                        <label class="block text-white text-sm font-bold mb-2" for="password">
-                            Password
-                        </label>
-                        <input class="shadow appearance-none border rounded w-full py-2 px-3 text-black mb-3 leading-tight focus:outline-none focus:shadow-outline" id="password" type="password" placeholder="********" name="password">
-                    </div>
-                    <div class="flex items-center justify-between mb-4">
-                        <button class="bg-transparent font-bold py-2 px-4 w-full border border-white rounded hover:bg-white hover:text-black focus:outline-none focus:shadow-outline" type="submit">
-                            Sign In
-                        </button>
-                    </div>
-                    <div class="flex justify-between items-center mb-4">
-                        <a class="inline-block align-baseline font-bold text-sm text-orange-700 hover:text-orange-800" href="forgot-password.html">
-                            Forgot Password?
-                        </a>
-                        <a class="inline-block align-baseline font-bold text-sm text-orange-700 hover:text-orange-800" href="sign-up.html">
-                            Don't have an account? Sign Up
-                        </a>
-                    </div>
-                </form>
+        <!-- Home section starts -->
+        <section class="home-bg h-screen flex items-center justify-center">
+            <div class="text-center">
+                <h2 class="text-4xl md:text-6xl font-bold mb-4">Welcome to Talento</h2>
+                <p class="text-lg md:text-2xl text-orange-700">Download Your Event Experience</p>
             </div>
         </section>
-        <!--Home ends-->
+        <!-- Home section ends -->
 
-        <!--Search section starts-->
-        <section>
-
-        </section>
-        <!--Search section ends-->
-
-        <!--Featured section starts-->
-        <section class="py-10">
-            <div class="p-4 text-2xl font-bold">
-                <h2>Featured</h2>
-            </div>
-            <div class="flex flex-wrap justify-center">
-                <div class="border border-white p-5 w-1/4 m-2 rounded-lg card">
-                    <div class="flex items-center mb-4">
-                        <img class="w-24 h-24 rounded-full mr-4" src="../static/images/profile.jpg" alt="">
-                        <div>
-                            <ul>
-                                <li class="font-bold">John Doe</li>
-                                <li>Photographer</li>
-                                <li>$20/hr</li>
-                            </ul>
-                        </div>
+        <!-- Featured section starts -->
+        <section class="my-16">
+            <h2 class="text-3xl font-bold text-center mb-12">Features</h2>
+            <div class="space-y-16">
+                <div class="flex flex-col md:flex-row md:items-center">
+                    <div class="md:w-1/2">
+                        <img src="../static/images/home.png" alt="Feature 1" class="w-full rounded-lg shadow-lg">
                     </div>
-                    <p>Creative graphic designer with a passion for visual storytelling, specializing in logos, branding, and digital media.</p>
+                    <div class="md:w-1/2 md:pl-12 mt-4 md:mt-0 text-center md:text-left">
+                        <a href="{{url_for('home')}}" class="text-orange-700"><h3 class="text-2xl font-bold mb-2">Home</h3></a>
+                        <p>Attended an event this weekend? Just have fun let us document it for you! <br>
+                        Go <a href="{{url_for('home')}}" class="text-orange-700">Home</a>, Check Out & Download your photos</p>
+                    </div>
                 </div>
-                <!-- Repeat this card for more profiles -->
-                <div class="border border-white p-5 w-1/4 m-2 rounded-lg card">
-                    <div class="flex items-center mb-4">
-                        <img class="w-24 h-24 rounded-full mr-4" src="../static/images/profile.jpg" alt="">
-                        <div>
-                            <ul>
-                                <li class="font-bold">Jane Doe</li>
-                                <li>Graphic Designer</li>
-                                <li>$20/hr</li>
-                            </ul>
-                        </div>
+                <div class="flex flex-col md:flex-row md:items-center">
+                    <div class="md:w-1/2 md:order-2">
+                        <img src="../static/images/event.png" alt="Feature 2" class="w-full rounded-lg shadow-lg">
                     </div>
-                    <p>Creative graphic designer with a passion for visual storytelling, specializing in logos, branding, and digital media.</p>
+                    <div class="md:w-1/2 md:pr-12 mt-4 md:mt-0 text-center md:text-left">
+                        <h3 class="text-2xl font-bold mb-2 text-orange-700">Event Page</h3>
+                        <p>Select your photos from the event to download</p>
+                    </div>
                 </div>
-                <div class="border border-white p-5 m-2 rounded-lg card">
-                    <div class="flex items-center mb-4">
-                        <img class="w-24 h-24 rounded-full mr-4" src="../static/images/profile.jpg" alt="">
-                        <div>
-                            <ul>
-                                <li class="font-bold">John Smith</li>
-                                <li>Web Developer</li>
-                                <li>$30/hr</li>
-                            </ul>
-                        </div>
+                <div class="flex flex-col md:flex-row md:items-center">
+                    <div class="md:w-1/2">
+                        <img src="../static/images/profile.png" alt="Feature 3" class="w-full rounded-lg shadow-lg">
                     </div>
-                    <p>Experienced web developer skilled in front-end and back-end technologies, ready to build and optimize your website.</p>
+                    <div class="md:w-1/2 md:pl-12 mt-4 md:mt-0 text-center md:text-left">
+                        <h3 class="text-2xl font-bold mb-2 text-orange-700">Photographers</h3>
+                        <p>Checkout your favourite photographer profile for more event coverages</p>
+                    </div>
+                </div>
+                <div class="flex flex-col md:flex-row md:items-center">
+                    <div class="md:w-1/2 md:order-2">
+                        <img src="../static/images/download.png" alt="Feature 4" class="w-full rounded-lg shadow-lg">
+                    </div>
+                    <div class="md:w-1/2 md:pr-12 mt-4 md:mt-0 text-center md:text-left">
+                        <h3 class="text-2xl font-bold mb-2 text-orange-700">Downloads</h3>
+                        <p>Select Your photos checkout and download!</p>
+                    </div>
                 </div>
             </div>
         </section>
-        <!--Featured section ends-->
+        <!-- Featured section ends -->
 
-        <!--Skill pool section starts-->
-        <section>
-            <div class="p-4 text-2xl font-bold">
-                <h2>Skill pool</h2>
-            </div>
-            <div class="flex flex-wrap justify-center">
-                <div class="p-5 m-2 rounded-lg bg-cover bg-center card" style="background-image: url(../static/images/camera.jpg);">
-                    <div class="flex items-center mb-4">
-                        <div>
-                            <h1 class="font-bold">Photographers</h1>
-                        </div>
-                    </div>
-                    <p>Creative graphic designer with a passion for visual storytelling, specializing in logos, branding, and digital media.</p>
-                </div>
-                <div class="p-5 m-2 rounded-lg bg-cover bg-center card" style="background-image: url(../static/images/hair-dressers.jpg);">
-                    <div class="flex items-center mb-4">
-                        <div>
-                            <h1 class="font-bold">Hair Dressers</h1>
-                        </div>
-                    </div>
-                    <p>Creative graphic designer with a passion for visual storytelling, specializing in logos, branding, and digital media.</p>
-                </div>
-                <div class="p-5 m-2 rounded-lg bg-cover bg-center" style="width: 30%; background-image: url(../static/images/interior.jpg);">
-                    <div class="flex items-center mb-4">
-                        <div>
-                            <h1 class="font-bold">Interior Designers</h1>
-                        </div>
-                    </div>
-                    <p>Creative graphic designer with a passion for visual storytelling, specializing in logos, branding, and digital media.</p>
-                </div>
-            </div>
+        <!-- About section starts -->
+        <section class="my-16 bg-gray-900 p-8 rounded-lg shadow-lg">
+            <h2 class="text-3xl font-bold text-center mb-8">About Us</h2>
+            <p class="text-lg text-center">At Talento, we specialize in capturing the essence of every event. From corporate gatherings to personal celebrations, our team of professional photographers is dedicated to preserving your most cherished moments.
+
+                We believe that every event is unique and deserves to be remembered in vivid detail. That’s why we offer high-quality images that attendees can easily download and share. Our seamless process ensures that your memories are just a click away, ready to be relived and treasured forever.
+                
+                Join us in celebrating life's special moments, and let us turn your events into lasting memories.</p>
         </section>
-        <!--Skill pool section ends-->
+        <!-- About section ends -->
 
         <!-- Footer section starts -->
-<footer class="bg-gray-900 text-white p-8 mt-16">
-    <div class="container mx-auto flex justify-between">
-        <div class="w-1/3">
-            <h3 class="text-lg font-bold">Quick Links</h3>
-            <ul class="mt-4">
-                <li><a href="profile.html" class="hover:text-gray-400">Home</a></li>
-                <li><a href="#" class="hover:text-gray-400">About Us</a></li>
-                <li><a href="#" class="hover:text-gray-400">Services</a></li>
-                <li><a href="#" class="hover:text-gray-400">Contact Us</a></li>
-            </ul>
-        </div>
-        <div class="w-1/3">
-            <h3 class="text-lg font-bold">Connect With Us</h3>
-            <ul class="mt-4">
-                <li><a href="#" class="hover:text-gray-400">Facebook</a></li>
-                <li><a href="#" class="hover:text-gray-400">Twitter</a></li>
-                <li><a href="#" class="hover:text-gray-400">Instagram</a></li>
-                <li><a href="#" class="hover:text-gray-400">LinkedIn</a></li>
-            </ul>
-        </div>
-        <div class="w-1/3">
-            <h3 class="text-lg font-bold">Contact Info</h3>
-            <p class="mt-4">123 Moi Avenue, Nairobi, Kenya</p>
-            <p>info@example.com</p>
-            <p>+123 456 7890</p>
-        </div>
-    </div>
-    <div class="mt-8 border-t border-gray-800 pt-8 text-center">
-        <p>&copy; 2024 Talento. All rights reserved.</p>
-    </div>
-</footer>
-<!-- Footer section ends -->
-
-
+        <footer class="bg-gray-900 text-white p-8 mt-16">
+            <div class="container mx-auto flex flex-col md:flex-row justify-between">
+                <div class="md:w-1/3 mb-8 md:mb-0">
+                    <h3 class="text-lg font-bold">Quick Links</h3>
+                    <ul class="mt-4">
+                        <li><a href="#" class="hover:text-gray-400">Home</a></li>
+                        <li><a href="#" class="hover:text-gray-400">About Us</a></li>
+                        <li><a href="#" class="hover:text-gray-400">Services</a></li>
+                        <li><a href="#" class="hover:text-gray-400">Contact Us</a></li>
+                    </ul>
+                </div>
+                <div class="md:w-1/3 mb-8 md:mb-0">
+                    <h3 class="text-lg font-bold">Connect With Us</h3>
+                    <ul class="mt-4">
+                        <li><a href="#" class="hover:text-gray-400">Facebook</a></li>
+                        <li><a href="#" class="hover:text-gray-400">Twitter</a></li>
+                        <li><a href="#" class="hover:text-gray-400">Instagram</a></li>
+                        <li><a href="#" class="hover:text-gray-400">LinkedIn</a></li>
+                    </ul>
+                </div>
+                <div class="md:w-1/3">
+                    <h3 class="text-lg font-bold">Contact Info</h3>
+                    <p class="mt-4">123 Moi Avenue, Nairobi, Kenya</p>
+                    <p>kipchumba.softwaredev@gmail.com</p>
+                    <p>+123 456 7890</p>
+                </div>
+            </div>
+            <div class="mt-8 border-t border-gray-800 pt-8 text-center">
+                <p>&copy; 2024 Talento. All rights reserved.</p>
+            </div>
+        </footer>
+        <!-- Footer section ends -->
     </div>
 </body>
 </html>
