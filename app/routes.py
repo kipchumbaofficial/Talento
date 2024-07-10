@@ -85,7 +85,7 @@ def profile(username):
         Event orgarnizer or Photo grapher
     '''
     user = User.query.filter_by(username=username).first()
-    events = user.events
+    events = Event.query.filter_by(user_id=user.id).order_by(Event.id.desc()).all()
     event_count = len(events)
     photo_count = sum(len(event.photos) for event in events)
     return render_template('profile.html', user=user, events=events,
@@ -170,7 +170,7 @@ def collection(event_id):
 def account():
     """Displays Account details to A user
     """
-    events = Event.query.filter_by(user_id=current_user.id).all()
+    events = Event.query.filter_by(user_id=current_user.id).order_by(Event.id.desc()).all()
     event_count = len(events)
     photo_count = sum(len(event.photos) for event in events)
     return render_template('account.html', events=events, event_count=event_count, photo_count=photo_count)
@@ -217,7 +217,7 @@ def create_event():
 def home():
     """Home route the home page of the web app
     """
-    events = Event.query.limit(10).all()
+    events = Event.query.order_by(Event.id.desc()).limit(12).all()
     return render_template('home.html', events=events)
 
 @app.route('/event/<event_id>')
@@ -227,7 +227,6 @@ def event(event_id):
     photos = Photo.query.filter_by(event_id=event_id).all()
     event = Event.query.get_or_404(event_id)
     creator = event.user
-    print(event)
     return render_template('event.html', photos=photos, event=event, creator=creator)
 
 @app.route('/prepare_checkout', methods=['POST', 'GET'])
@@ -277,3 +276,55 @@ def checkout():
 def download():
     selected_photos = session.get('checkout_data', {}).get('selected_photos', [])
     return render_template('download.html', selected_photos=selected_photos)
+
+@app.route('/edit_profile')
+def edit_profile():
+    user = User.query.get(current_user.id)
+    return render_template('update_profile.html', user=user)
+
+@app.route('/update_profile', methods=['POST', 'GET'])
+@login_required
+def update_profile():
+    """Route to update Username, About and profile picture"""
+    username = request.form.get('username')
+    about = request.form.get('about')
+    profile_photo = request.files.get('profile_photo')
+
+    user = User.query.get(current_user.id)
+
+    if user:
+        if User.query.filter(User.username == username, User.id != user.id).first():
+            flash('Username Already Taken', 'error')
+            return redirect(url_for('update_profile'))
+    
+        if username:
+            user.username = username
+
+        if about:
+            user.about = about
+
+        if profile_photo:
+            photo_extension = os.path.splitext(secure_filename(profile_photo.filename))[1]
+            profile_filename = f"{uuid.uuid4().hex}{photo_extension}"
+            profile_photo_path = os.path.join(app.config['UPLOAD_FOLDER'], profile_filename)
+            profile_photo.save(profile_photo_path)
+            user.profile_photo = profile_filename
+
+        db.session.commit()
+        flash('Profile Updated Successfully!', 'success')
+    return redirect(url_for('account'))
+
+@app.route('/delete_event/<int:event_id>', methods=['POST'])
+@login_required
+def delete_event(event_id):
+    '''Deletes an invent when user wants to'''
+    event = Event.query.get_or_404(event_id)
+
+    if event.user_id == current_user.id:
+        for photo in event.photos:
+            db.session.delete(photo)
+        db.session.delete(event)
+        db.session.commit()
+        flash('Event deleted succesfully', 'success')
+
+    return redirect(url_for('account'))
