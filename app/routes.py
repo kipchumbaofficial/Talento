@@ -328,3 +328,21 @@ def delete_event(event_id):
         flash('Event deleted succesfully', 'success')
 
     return redirect(url_for('account'))
+
+@app.route('/delete_account', methods=['POST'])
+@login_required
+def delete_account():
+    '''Allows users to delete account'''
+    user = User.query.get(current_user.id)
+
+    for event in user.events:
+        for photo in event.photos:
+            db.session.delete(photo)
+        db.session.delete(event)
+
+    db.session.delete(user)
+    db.session.commit()
+    
+    logout_user()
+    flash('Account deleted Successfully', 'success')
+    return redirect(url_for('index'))

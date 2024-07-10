@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Talento</title>
     <link rel="stylesheet" href="../static/css/style.css">
+    <link rel="stylesheet" href="../static/css/custom.css">
     <link rel="shortcut icon" href="../static/images/logo.jpg" type="image/x-icon">
     <script src="https://kit.fontawesome.com/c893f91b93.js" crossorigin="anonymous"></script>
     <style>
@@ -25,6 +26,16 @@
             <a href="{{url_for('home')}}" class="text-2xl"><i class="fa-solid fa-house"></i></a>
         </header>
         <!-- Nav section ends -->
+
+        {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+        <ul class="p-1">
+            {% for category, message in messages %}
+            <li class="{{category}} text-center">{{ message }}</li>
+            {% endfor %}
+        </ul>
+        {% endif %}
+        {% endwith %}
 
         <!-- Home section starts -->
         <section class="home-bg h-screen flex items-center justify-center">
