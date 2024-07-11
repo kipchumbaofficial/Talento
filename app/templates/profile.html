@@ -56,7 +56,7 @@
       {% for event in events %}
       <!-- Post 1 -->
       <div class="relative w-full h-48 bg-gray-300 rounded-lg overflow-hidden">
-        <a href="{{url_for('collection', event_id=event.id)}}">
+        <a href="{{url_for('event', event_id=event.id)}}">
             <img src="{{ url_for('static', filename='/images/uploads/' + event.cover_photo) }}" alt="Post Image" class="w-full h-full object-cover">
         </a>
         <div class="absolute bottom-0 left-0 bg-black bg-opacity-50 text-white w-full p-2">

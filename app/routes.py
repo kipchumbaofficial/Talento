@@ -363,3 +363,54 @@ def delete_photo(photo_id):
         db.session.commit()
         flash('Photo Deleted Successfully!', 'success')
     return redirect(url_for('collection', event_id=event.id))
+
+@app.route('/update_event/<int:event_id>', methods=['POST', 'GET'])
+@login_required
+def update_event(event_id):
+    '''Route to update a collection'''
+    event = Event.query.get_or_404(event_id)
+
+    if request.method == 'POST':
+        name = request.form.get('name')
+        about = request.form.get('about')
+        cover_photo = request.files.get('cover')
+        photos = request.files.getlist('photos')
+        price = request.form.get('price')
+
+        if event.user_id == current_user.id:
+            if name:
+                event.name = name
+            
+            if about:
+                event.about = about
+            
+            if cover_photo:
+                # Remove the old cover photo if exists
+                old_cover_photo_path = os.path.join(app.config['UPLOAD_FOLDER'], event.cover_photo)
+                if os.path.exists(old_cover_photo_path):
+                    os.remove(old_cover_photo_path)
+                # Save the new cover photo
+                cover_extension = os.path.splitext(secure_filename(cover_photo.filename))[1]
+                cover_filename = f"{uuid.uuid4().hex}{cover_extension}"
+                cover_photo_path = os.path.join(app.config['UPLOAD_FOLDER'], cover_filename)
+                cover_photo.save(cover_photo_path)
+                event.cover_photo = cover_filename
+
+            for photo in photos:
+                if photo:
+                    photo_extension = os.path.splitext(secure_filename(photo.filename))[1]
+                    photo_filename = f"{uuid.uuid4().hex}{photo_extension}"
+                    photo_path = os.path.join(app.config['UPLOAD_FOLDER'], photo_filename)
+                    photo.save(photo_path)
+
+                    new_photo = Photo(file_path=photo_filename, event_id=event.id)
+                    db.session.add(new_photo)
+            if price:
+                for photo in event.photos:
+                    photo.price = price
+
+        db.session.commit()
+        flash('Collection updated successfully!', 'success')
+        return redirect(url_for('collection', event_id=event.id))
+
+    return render_template('update_event.html', event=event)

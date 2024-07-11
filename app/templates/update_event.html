@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Talento &mdash; Sign-up</title>
+    <title>Talento</title>
     <link rel="shortcut icon" href="../static/images/logo.jpg" type="image/x-icon">
     <link rel="stylesheet" href="../static/css/style.css">
     <link rel="stylesheet" href="../static/css/custom.css">
@@ -24,7 +24,7 @@
     
     <div class="flex items-center justify-center h-screen">
         <div class="border border-white p-8 rounded-lg shadow-lg w-full max-w-sm">
-            <h2 class="text-2xl font-bold mb-6 text-center">Create Event</h2>
+            <h2 class="text-2xl font-bold mb-6 text-center">Update Event</h2>
             {% with messages = get_flashed_messages(with_categories=true) %}
                 {% if messages %}
                 <ul>
@@ -34,28 +34,28 @@
                 </ul>
                 {% endif %}
                 {% endwith %}
-            <form action="{{url_for('create_event')}}", method="post" enctype="multipart/form-data">
+            <form action="{{url_for('update_event', event_id=event.id)}}", method="post" enctype="multipart/form-data">
                 <div class="mb-4">
                     <label for="name" class="block text-sm font-medium">Event name</label>
-                    <input class="shadow appearance-none border rounded w-full py-2 px-3 text-black mb-3 leading-tight focus:outline-none focus:shadow-outline" id="password" type="text" placeholder="Event Name" name="name">
+                    <input value="{{event.name}}" class="shadow appearance-none border rounded w-full py-2 px-3 text-black mb-3 leading-tight focus:outline-none focus:shadow-outline" id="password" type="text" placeholder="Event Name" name="name">
                 </div>
                 <div class="mb-4">
                     <label for="about" class="block text-sm font-medium">About The Event</label>
-                    <textarea name="about" id="about" rows="1" class="w-full p-2 rounded text-black" required></textarea>
+                    <textarea name="about" id="about" rows="1" class="w-full p-2 rounded text-black">{{ event.about }}</textarea>
                 </div>
                 <div class="mb-4">
                     <label for="coverPhoto" class="block text-lg mb-2">Cover Photo:</label>
-                    <input type="file" name="cover" id="coverPhoto" class="w-full p-2 rounded text-white" required>
+                    <input type="file" name="cover" id="coverPhoto" class="w-full p-2 rounded text-white">
                 </div>
                 <div class="mb-4">
-                    <label for="additionalPhotos" class="block text-lg mb-2">Photos:</label>
+                    <label for="additionalPhotos" class="block text-lg mb-2">Add Photos:</label>
                     <input type="file" name="photos" id="additionalPhotos" class="w-full p-2 rounded text-white" multiple>
                 </div>
                 <div class="mb-4">
-                    <label for="name" class="block text-sm font-medium">Price per photo:</label>
-                    <input class="shadow appearance-none border rounded w-full py-2 px-3 text-black mb-3 leading-tight focus:outline-none focus:shadow-outline" id="password" type="number" placeholder="Price of a photo" name="price">
+                    <label for="name" class="block text-sm font-medium">Update Price:</label>
+                    <input value="1" class="shadow appearance-none border rounded w-full py-2 px-3 text-black mb-3 leading-tight focus:outline-none focus:shadow-outline" id="password" type="number" placeholder="Price of a photo" name="price">
                 </div>
-                <button type="submit" class="w-full bg-orange-700 text-white py-2 px-4 rounded-md hover:bg-orange-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Add Event +</button>
+                <button type="submit" class="w-full bg-orange-700 text-white py-2 px-4 rounded-md hover:bg-orange-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Save Changes</button>
             </form>
         </div>
     

@@ -38,7 +38,7 @@ document.addEventListener('DOMContentLoaded', function() {
         event.preventDefault();
 
         const checkoutData = {
-            price: totalPrice.toFixed(2),
+            price: (totalPrice / count).toFixed(2),
             count: count,
             total: totalPrice.toFixed(2),
             selected_photos: selectedPhotos
