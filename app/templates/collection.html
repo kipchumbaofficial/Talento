@@ -48,6 +48,15 @@
     </div>
 
     <!-- Posts Grid -->
+    {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+    <ul class="p-1">
+        {% for category, message in messages %}
+        <li class="{{category}} text-center">{{ message }}</li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+    {% endwith %}
     <div class="mt-6 grid grid-cols-3 gap-4">
       <!-- Post -->
       {% for photo in photos %}
@@ -59,8 +68,14 @@
                 <input type="checkbox" data-price="{{ photo.price }}" class="form-checkbox photo-checkbox h-5 w-5 text-blue-600">
                 <span class="ml-2"></span>
             </label>
+                    <!-- Delete Button (X) -->
+            <form action="{{ url_for('delete_photo', photo_id=photo.id) }}" method="post" onsubmit="return confirm('Are you sure you want to delete this photo?');">
+                <button class="absolute top-2 right-2 text-white rounded-full bg-red-500 px-2 py-1 hover:bg-red-600 focus:outline-none">
+                  <i class="fas fa-times"></i>
+                </button>
+            </form>
             <!-- Price Tag -->
-            <div class="absolute top-2 right-2 bg-transparent text-white font-bold px-2 py-1 rounded">{{photo.price}}/=</div>
+            <div class="hidden absolute top-2 right-2 bg-transparent text-white font-bold px-2 py-1 rounded">{{photo.price}}/=</div>
 
             <div class="flex justify-center items-center">
                 <div class="space-x-2">

@@ -346,3 +346,20 @@ def delete_account():
     logout_user()
     flash('Account deleted Successfully', 'success')
     return redirect(url_for('index'))
+
+@app.route('/delete_photo/<int:photo_id>', methods=['POST'])
+@login_required
+def delete_photo(photo_id):
+    '''Deletes a photo when a user needs to'''
+    photo = Photo.query.get_or_404(photo_id)
+
+    event = Event.query.get(photo.event_id)
+
+    if event.user_id == current_user.id:
+        photo_path = os.path.join(app.config['UPLOAD_FOLDER'], photo.file_path)
+        if os.path.exists(photo_path):
+            os.remove(photo_path)
+        db.session.delete(photo)
+        db.session.commit()
+        flash('Photo Deleted Successfully!', 'success')
+    return redirect(url_for('collection', event_id=event.id))
