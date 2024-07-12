@@ -31,12 +31,13 @@ def login():
     if request.method == 'POST':
         email = request.form['email']
         password = request.form['password']
+        remember = request.form.get('remember')
         user = User.query.filter_by(email=email).first()
 
         if not user or not check_password_hash(user.password, password):
             flash('Invalid credentials', 'error')
             return redirect(url_for('login'))
-        login_user(user)
+        login_user(user, remember=remember)
         return redirect(url_for('account'))
 
     return render_template('login.html')

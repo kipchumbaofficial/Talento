@@ -60,7 +60,7 @@
             <img src="{{ url_for('static', filename='/images/uploads/' + event.cover_photo) }}" alt="Post Image" class="w-full h-full object-cover">
         </a>
         <div class="absolute bottom-0 left-0 bg-black bg-opacity-50 text-white w-full p-2">
-          <h2 class="text-xl">{{ event.name }}</h2>
+          <h2 class="md:text-xl">{{ event.name }}</h2>
         </div>
       </div>
       {% endfor %}
