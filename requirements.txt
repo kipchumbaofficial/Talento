@@ -3,4 +3,5 @@ flask_mail
 flask_login
 flask_sqlalchemy
 psycopg2-binary
-gunicorn==20.1.0
+gunicorn
+SQLAlchemy
