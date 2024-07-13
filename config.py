@@ -6,7 +6,7 @@ import os
 class Config:
     """Configuration Class"""
     SECRET_KEY = 'mysecretkey'
-    SQLALCHEMY_DATABASE_URI = os.getenv('SQLALCHEMY_DATABASE_URI', 'mysql://kipchumba:1Laflame_@localhost/talento')
+    SQLALCHEMY_DATABASE_URI = os.getenv('SQLALCHEMY_DATABASE_URI')
     SQLALCHEMY_TRACK_MODIFICATION = False
     MAIL_SERVER = 'smtp.gmail.com'
     MAIL_PORT = 587
