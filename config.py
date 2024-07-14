@@ -12,6 +12,6 @@ class Config:
     MAIL_PORT = 587
     MAIL_USE_TLS = True
     MAIL_USE_SSL = False
-    MAIL_USERNAME = 'victorkipchumba039@gmail.com'
-    MAIL_PASSWORD = 'howv zrbi jiyj aldi'
+    MAIL_USERNAME = os.getenv('MAIL_USERNAME')
+    MAIL_PASSWORD = os.getenv('MAIL_PASSWORD')
     UPLOAD_FOLDER = './app/static/images/uploads'
